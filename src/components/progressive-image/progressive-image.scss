@@ -1,0 +1,20 @@
+$blur: 6px;
+
+.image {
+  width: 800px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.image-blur {
+  filter: blur($blur);
+  clip-path: inset(0);
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}

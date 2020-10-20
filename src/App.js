@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useRef} from 'react'
+import loadable from '@loadable/component'
+import FishText from './auxiliary-components/fish-text'
+import Lazy from "./components/lazy/Lazy"
+import ProgressiveImage from './components/progressive-image/ProgressiveImage'
+import imageMax from './images/temperance.png'
+import imageMin from './images/temperance-min.jpg'
+import './App.css'
+
+
+const ShowMe = loadable(() => import('./auxiliary-components/show-me'))
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const testRef = useRef(null)
+    return (
+        <div className="App">
+            <ProgressiveImage
+                alt={'test'}
+                title={'test'}
+                overlaySrc={imageMin}
+                src={imageMax}
+            />
+            <FishText num={10}/>
+            <p ref={testRef} style={{color: 'red'}}>
+                Scorpionfish crestfish burrowing goby, sixgill shark yellow-and-black triplefin lizardfish mudfish .
+            </p>
+            <Lazy reference={testRef} Component={ShowMe} alt='logo'/>
+        </div>
+    )
 }
 
-export default App;
+export default App
